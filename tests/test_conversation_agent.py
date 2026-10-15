@@ -267,16 +267,31 @@ class TestCleanResult:
 
     def test_strips_after_hash(self, conversation_scene, alice):
         _, conversation, _ = conversation_scene
-        result = conversation.clean_result("hello # internal", alice)
+        result = conversation.clean_result("hello\n# internal note", alice)
         assert "internal" not in result
         assert "hello" in result
+
+    def test_midline_hash_in_prose_is_kept(self, conversation_scene, alice):
+        # A stray '#' inside a prose line (e.g. Chinese text) is not an
+        # internal-comment heading; cutting there truncated replies.
+        _, conversation, _ = conversation_scene
+        result = conversation.clean_result("hello # there\nmore text", alice)
+        assert "more text" in result
 
     def test_strips_after_internal_marker(self, conversation_scene, alice):
         _, conversation, _ = conversation_scene
         result = conversation.clean_result(
-            "real dialogue (Internal: thinking thoughts)", alice
+            "real dialogue\n(Internal: thinking thoughts)", alice
         )
         assert "Internal" not in result
+        assert "real dialogue" in result
+
+    def test_midline_internal_marker_is_kept(self, conversation_scene, alice):
+        _, conversation, _ = conversation_scene
+        result = conversation.clean_result(
+            "real dialogue (Internal: thinking thoughts)", alice
+        )
+        assert "Internal" in result
         assert "real dialogue" in result
 
     def test_collapses_space_colon(self, conversation_scene, alice):

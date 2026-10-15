@@ -380,11 +380,11 @@ class ConversationAgent(MemoryRAGMixin, Agent):
         if not result:
             return ""
 
-        if "#" in result:
-            result = result.split("#")[0]
-
-        if "(Internal" in result:
-            result = result.split("(Internal")[0]
+        # Only cut at line-initial '#' or '(Internal' (their canonical
+        # forms as markdown headings / internal commentary). A stray '#'
+        # inside Chinese prose previously amputated the rest of the reply.
+        result = re.split(r"^#", result, flags=re.M)[0]
+        result = re.split(r"^\(Internal", result, flags=re.M)[0]
 
         result = result.replace(" :", ":")
 
@@ -444,7 +444,7 @@ class ConversationAgent(MemoryRAGMixin, Agent):
             handle_empty_response_limit("conversation", 1)
 
         total_result = result.replace(" :", ":")
-        total_result = total_result.split("#")[0].strip()
+        total_result = re.split(r"^#", total_result, flags=re.M)[0].strip()
 
         total_result = util.handle_endofline_special_delimiter(total_result)
 
