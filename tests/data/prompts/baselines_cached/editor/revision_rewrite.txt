@@ -209,7 +209,7 @@ Every flagged item above must be addressed in your revision. "Addressed" means s
 
 Do not emit a revision that leaves any flagged item untouched.
 
-The length of your response must fit within 6 paragraphs.
+Be as detailed and verbose as you need to be in your response.
 
 <|BOT|><PLAN>
 - 

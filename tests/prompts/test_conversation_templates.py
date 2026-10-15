@@ -399,7 +399,7 @@ class TestCleanResult:
     def test_clean_result_removes_hash_comments(self, conversation_agent):
         """Test that clean_result removes content after #."""
         result = conversation_agent.clean_result(
-            "Hello there.# This is a comment", Mock(name="Elena")
+            "Hello there.\n# This is a comment", Mock(name="Elena")
         )
 
         assert "#" not in result
@@ -408,7 +408,7 @@ class TestCleanResult:
     def test_clean_result_removes_internal_markers(self, conversation_agent):
         """Test that clean_result removes (Internal markers."""
         result = conversation_agent.clean_result(
-            "Hello there.(Internal thought: this is hidden)", Mock(name="Elena")
+            "Hello there.\n(Internal thought: this is hidden)", Mock(name="Elena")
         )
 
         assert "(Internal" not in result
@@ -612,7 +612,7 @@ class TestResponseExtraction:
 
         # Response with internal marker
         mock_llm_client.send_prompt.return_value = (
-            '"I understand."(Internal: character is hesitant)\nEND-OF-LINE'
+            '"I understand."\n(Internal: character is hesitant)\nEND-OF-LINE'
         )
 
         messages = await agent.converse(actor)
