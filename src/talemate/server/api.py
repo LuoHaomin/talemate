@@ -45,6 +45,16 @@ def _agents_busy() -> bool:
     )
 
 
+def _should_headless_rescue(scene) -> bool:
+    """
+    Only real, loaded scenes qualify: the websocket handler always carries a
+    Scene object, but before anything is loaded it is an unnamed placeholder
+    with nothing to rescue (and nothing that can be saved — Scene.save
+    refuses nameless scenes).
+    """
+    return bool(scene and getattr(scene, "name", None) and not getattr(scene, "loading", False))
+
+
 async def _finish_scene_after_disconnect(scene, timeout: float = None, poll: float = 0.5):
     """
     Completes a scene after the frontend disconnected in headless mode.
@@ -144,8 +154,7 @@ async def websocket_endpoint(websocket):
         resolve_all_generation_errors("cancel")
 
         headless_rescue = bool(
-            handler.scene
-            and not getattr(handler.scene, "loading", False)
+            _should_headless_rescue(handler.scene)
             and get_config().game.general.headless_disconnect
         )
 

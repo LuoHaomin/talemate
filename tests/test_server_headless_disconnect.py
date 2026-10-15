@@ -18,10 +18,10 @@ from talemate.config.schema import Config
 
 
 class FakeScene:
-    def __init__(self, saved=False, filename="/tmp/scene.json"):
+    def __init__(self, saved=False, filename="/tmp/scene.json", name=""):
         self.saved = saved
         self.filename = filename
-        self.name = "Test Scene"
+        self.name = name
         self.loading = False
         self.active = True
         self.continue_scene = True
@@ -113,6 +113,25 @@ class TestFinishSceneAfterDisconnect:
         await api_module._finish_scene_after_disconnect(scene, timeout=5, poll=0.01)
 
         memory_agent.close_db.assert_called_once()
+
+
+class TestShouldHeadlessRescue:
+    def test_unnamed_placeholder_scene_does_not_qualify(self):
+        # the handler's scene before anything is loaded: nothing to rescue,
+        # and Scene.save would refuse it anyway
+        assert api_module._should_headless_rescue(FakeScene()) is False
+        assert api_module._should_headless_rescue(None) is False
+
+    def test_named_loaded_scene_qualifies(self):
+        scene = FakeScene()
+        scene.name = "My Scene"
+        assert api_module._should_headless_rescue(scene) is True
+
+    def test_loading_scene_does_not_qualify(self):
+        scene = FakeScene()
+        scene.name = "My Scene"
+        scene.loading = True
+        assert api_module._should_headless_rescue(scene) is False
 
 
 class TestConfigFlag:
