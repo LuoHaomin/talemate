@@ -721,3 +721,33 @@ def test_strip_hidden_markers(input, hide_brackets, hide_parentheses, expected):
     )
 
     assert result == expected
+
+
+@pytest.mark.parametrize(
+    "input, expected, main_name",
+    [
+        # CJK characters are caseless: a Chinese line mentioning an uppercase
+        # Latin fragment (weapon code "M14") must not be treated as a
+        # screenplay SPEAKER header, which used to truncate the reply there.
+        (
+            "由纪: 她把M14靠在墙边，蹲下来检查炉门。",
+            "由纪: 她把M14靠在墙边，蹲下来检查炉门。",
+            "由纪",
+        ),
+        # a genuine colon-less uppercase ASCII line is still treated as a
+        # speaker header and truncates (unchanged design behavior)
+        (
+            "bob: stays\nALICE INTERJECTS",
+            "bob: stays",
+            "bob",
+        ),
+        # CJK narration lines survive alongside the uppercase fragment case
+        (
+            "bob: 你好。\n她把M14靠在墙边，检查炉门。",
+            "bob: 你好。\n她把M14靠在墙边，检查炉门。",
+            "bob",
+        ),
+    ],
+)
+def test_clean_dialogue_cjk_uppercase_fragment(input, expected, main_name):
+    assert clean_dialogue(input, main_name) == expected

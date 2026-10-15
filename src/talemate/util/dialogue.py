@@ -122,8 +122,15 @@ def strip_partial_sentences(text: str) -> str:
     Returns:
         str: The cleaned text.
     """
-    sentence_endings = [".", "!", "?", '"', "*"]
-    closers = {"]": "[", ")": "(", "}": "{"}
+    # CJK sentence endings and paired brackets must be recognized as valid
+    # sentence terminators. With ASCII-only endings the backwards scan falls
+    # through Chinese narration (。！？ are invisible to it) and amputates
+    # everything after the last ASCII quote or asterisk.
+    sentence_endings = [".", "!", "?", '"', "*", "。", "！", "？", "…"]
+    closers = {
+        "]": "[", ")": "(", "}": "{",
+        "」": "「", "』": "『", "）": "（", "】": "【",
+    }
 
     # loop backwards through `text` until a sentence ending is found
 
@@ -179,7 +186,12 @@ def clean_dialogue(
         # if line is all capitalized
         # this is likely a new speaker in movie script format, and we
         # bail
-        if line.strip().isupper():
+        # Only treat a line as a screenplay SPEAKER header when the whole
+        # line is ASCII. CJK characters are caseless, so str.isupper() is
+        # True for any line containing an uppercase Latin fragment (e.g. a
+        # Chinese reply mentioning "M14"), which truncated replies mid-text.
+        stripped_line = line.strip()
+        if stripped_line.isascii() and stripped_line.isupper():
             break
 
         if other_names is not None:
