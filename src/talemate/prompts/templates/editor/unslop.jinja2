@@ -6,371 +6,81 @@ Override example:
   {{ set_anchor_extractor("fix", "<MY_TAG>", "</MY_TAG>") }}
   {{ set_as_is_extractor("fix") }}
 -#}
-## Examples
+## 示例
+
+---
 
 <REVIEW>
-"Hello, Mother. I have returned from my educational institution," said Tim.
-"Excellent. Did you successfully complete your mathematical assignments?" she responded.
-"Affirmative. I achieved a score of ninety-two percent on my algebraic examination."
-"That is most satisfactory. Please proceed to consume your afternoon snack in the kitchen area."
+*她看着由纪把最后一块肉干递过来，心中涌起一股难以言喻的暖意。在这末世的寒冬里，这份善意仿佛一束光，照亮了她内心深处最柔软的角落。*
+「谢谢你。」*她轻声说道，声音里带着一丝不易察觉的颤抖。*
 </REVIEW>
 
 <ANALYSIS>
-- Thought process: This reads like robots trying to imitate human conversation. No real person says "educational institution" instead of "school" or talks without contractions. The mother-son dynamic is completely missing.
-- Purple prose: MINOR - overly formal word choices
-- Unnatural dialogue: MAJOR ISSUES - no contractions, robotic speech, "educational institution" instead of school
-- Over-description: NO
-- Length: OK
-- Tense: PAST - "said Tim"
-- Mature content: N/A
-- Name overuse: "Mother" - kids say "Mom" not "Mother"
-- Talking vs Showing: NO - natural conversation flow, not over-explaining
+- 思路：全程在"宣布"情绪而不是呈现情绪。套话连环：难以言喻、仿佛一束光、内心深处最柔软的角落、一丝不易察觉的颤抖——都是统计高频的空壳描写，删掉不损失任何信息。
+- 套话填充词：严重（难以言喻/仿佛/一丝/涌起）
+- 宣布 vs 呈现：严重——"暖意""善意"直接说出来
+- 对话：书面腔，"轻声说道"是AI式舞台提示
+- 节奏：两句一样长
+- 金句感："照亮…角落"
 </ANALYSIS>
 
 <FIX>
-"Hey Mom, I'm home," Tim called out.
-"Hi sweetie! How'd your math test go?"
-"Pretty good—got a 92."
-"That's great! There's snacks in the kitchen if you're hungry."
+*她盯着那块肉干看了两秒，才伸手接过来。*
+「……谢谢。」
+*指尖碰到对方手心时缩了一下，又装作没事似的低头去剥包装。*
 </FIX>
 
 ---
 
 <REVIEW>
-Beneath the opalescent moon's ethereal glow, Jake's sapphire eyes met hers.
-"Your presence illuminates my existence more brilliantly than a thousand supernovas," he declared.
-"Indeed, our souls appear to be quantum entangled across the cosmic void," she replied, her voice like honeyed ambrosia.
+篝火在雪地里燃烧着——这是希望的象征，不是简单的火焰。它代表着坚持，代表着勇气，代表着永不放弃的信念。寒风呼啸，白雪皑皑，天地间一片苍茫。
 </REVIEW>
 
 <ANALYSIS>
-- Thought process: This sounds like someone fed a physics textbook and a bad romance novel into a blender. Real people in love don't speak in astronomical metaphors and quantum physics references. The purple prose is so thick you can barely find the actual emotion underneath.
-- Purple prose: SEVERE - "opalescent ethereal glow," "sapphire eyes," "honeyed ambrosia"
-- Unnatural dialogue: MAJOR ISSUES - nobody talks about supernovas and quantum entanglement romantically
-- Over-description: YES - voice descriptions, eye color unnecessary
-- Length: TOO LONG
-- Tense: PAST - "eyes met hers"
-- Mature content: N/A
-- Name overuse: NO - uses pronouns appropriately
-- Talking vs Showing: MODERATE - explicitly declaring feelings instead of showing through actions
+- 思路：破折号评判句（"——这是X，不是Y"）是最典型的AI痕迹；排比三连（代表着×3）在假装有力；成语堆砌（呼啸/皑皑/苍茫）没有任何信息增量。
+- 破折号滥用：严重——陈述加评判结构
+- 排比堆砌：严重——砍到只剩一句或全砍
+- 成语堆砌：严重——换成直白描写
+- 空泛升华："希望的象征"
 </ANALYSIS>
 
 <FIX>
-Jake took her hand in the moonlight, his thumb tracing small circles on her palm.
-"I can't imagine doing this with anyone else," he said quietly.
-She squeezed his hand. "Me neither."
+篝火在雪地里烧着，火苗不高，胜在挡风。他把双手凑上去烤了一会儿，又翻了个面。
 </FIX>
 
 ---
 
 <REVIEW>
-Mark lifted his ceramic coffee mug—white, 12 ounces, with a small chip on the rim—using his right hand. He raised it exactly 7.5 inches from the table surface.
-"I am currently experiencing caffeine withdrawal symptoms," he announced to his coworker.
-"Perhaps you should ingest the heated caffeinated beverage to alleviate your discomfort," she suggested, adjusting her ergonomic chair to a 95-degree angle.
+「我必须承认，你的生存技能给我留下了深刻的印象。」Peteright说。
+「这是一种在长期实践中逐渐积累的能力。」由纪回答道。
 </REVIEW>
 
 <ANALYSIS>
-- Thought process: This reads like a medical journal entry about drinking coffee. The clinical language and precise measurements turn a simple morning coffee scene into a scientific experiment. Plus nobody announces their physical state like they're reading symptoms off a chart.
-- Purple prose: MINOR - clinical/scientific language where casual would work
-- Unnatural dialogue: SEVERE - "experiencing caffeine withdrawal symptoms" instead of "need coffee"
-- Over-description: MAJOR - mug details, exact measurements, chair angle
-- Length: TOO LONG
-- Tense: PAST - "raised it exactly 7.5 inches from the table surface"
-- Mature content: N/A
-- Name overuse: NO - avoided names properly
-- Talking vs Showing: SEVERE - announcing physical state instead of showing through actions
+- 思路：翻译腔——"我必须承认""给我留下了深刻的印象"是英文直译的正式腔，真人不这么说话。更要命的是由纪的声线被覆盖了：她是短句、先动词、话少的人，绝不说"这是一种在长期实践中逐渐积累的能力"。
+- 对话翻译腔：严重
+- 角色声线：被破坏——改写必须贴合角色既有的说话方式
+- 名字：无问题
 </ANALYSIS>
 
 <FIX>
-Mark grabbed his chipped coffee mug and took a long sip, then rubbed his temples.
-"Rough morning?" his coworker asked, noticing the dark circles under his eyes.
-"Need more caffeine," he muttered.
-</FIX>
-
-{% if decensor %}---
-
-<REVIEW>
-"This goddamn contraption is malfunctioning again," she exclaimed with considerable frustration, her delicate fingers trembling like autumn leaves as she gestured toward the temperamental machinery. 
-"Perhaps we should attempt to recalibrate the technical parameters," suggested Marcus, adjusting his wire-rimmed spectacles.
-"Screw the parameters, Marcus. This piece of shit never works properly," she retorted.
-</REVIEW>
-
-<ANALYSIS>
-- Thought process: The frustration comes through in the cursing, which is good, but it's buried under purple prose about trembling fingers and autumn leaves. Also, one character talks like they're angry while the other sounds like a technical manual. Marcus's name is used way too much.
-- Purple prose: YES - "delicate fingers trembling like autumn leaves," "temperamental machinery"
-- Unnatural dialogue: MIXED - some parts natural ("This goddamn contraption"), others stiff ("recalibrate the technical parameters")
-- Over-description: YES - hand descriptions, spectacle adjusting
-- Length: TOO LONG
-- Tense: PAST - "she exclaimed"
-- Mature content: PRESERVE - keep "goddamn," "screw," "piece of shit" as is
-- Name overuse: YES - "Marcus" used twice unnecessarily
-- Talking vs Showing: NO - frustration shown through cursing, not explicitly stated
-</ANALYSIS>
-
-<FIX>
-"This goddamn thing is broken again," she said, pointing at the machine.
-"Maybe we should try recalibrating it?" 
-"Screw that. This piece of shit never works."
-</FIX>
-
-{% endif %}---
-
-<REVIEW>
-"Oh no, I appear to have misplaced my keys again," Jennifer announced to the empty room, her voice echoing off the pristine walls. "I must search for them systematically. First, I shall check the kitchen counter, then proceed to examine my jacket pockets."
-She walked to the kitchen. "They are not here," she declared. Moving to the coat rack, she proclaimed, "Ah, here they are! I am quite relieved to have located them."
-</REVIEW>
-
-<ANALYSIS>
-- Thought process: Nobody talks out loud when they're alone, especially not narrating their every move like they're in a stage play. This should be internal narrative or just actions, not spoken dialogue. The formal language makes it even worse - who says "I shall check" when looking for keys?
-- Purple prose: MINOR - "pristine walls," overly formal language
-- Unnatural dialogue: SEVERE - nobody narrates their actions aloud when alone
-- Over-description: MINOR - "voice echoing"
-- Length: TOO LONG
-- Tense: PAST - "announced to the empty room"
-- Mature content: N/A
-- Name overuse: N/A
-- Talking vs Showing: SEVERE - character speaking to empty room instead of using narration
-</ANALYSIS>
-
-<FIX>
-Jennifer couldn't find her keys. She checked the kitchen counter first, then her jacket pockets. There they were. She grabbed them and headed out.
+「你这手艺练了多久？」Peteright问。
+「很久。」由纪把鱼扔进雪里，「我爸教的。」
 </FIX>
 
 ---
 
 <REVIEW>
-The morning sun streamed through the window as Emma turned to face her partner.
-"I trust you," she said, her voice barely above a whisper. "You know that, right?"
-Marcus nodded slowly. "I know. And I trust you too, Emma. We've been through so much together."
-She reached for his hand, searching his eyes for reassurance.
+*由纪把M14靠在墙边，蹲下来检查炉门。火不太旺了，她添了根柴，用枪管拨了拨。狐狸在毯子上打了个哈欠。*
+「今晚我守前半夜。」
 </REVIEW>
 
-<UNWANTED_PROSE>
-- MATCH: `"I trust you,"`
-  - INSTRUCTIONS: Explicit trust declarations in dialogue feel unnatural. Show trust through actions or context instead of stating it directly.
-- MATCH: `"And I trust you too, Emma."`
-  - INSTRUCTIONS: Explicit trust declarations in dialogue feel unnatural. Show trust through actions or context instead of stating it directly.
-</UNWANTED_PROSE>
-
 <ANALYSIS>
-- Thought process: This scene has characters explicitly saying "I trust you" which the UNWANTED_PROSE flags identify as unnatural dialogue. Real people rarely make such direct declarations - trust is demonstrated through actions, vulnerability, or implied through context. The scene also has some name overuse with Emma being addressed directly.
-- Purple prose: MINOR - "voice barely above a whisper"
-- Unnatural dialogue: MAJOR ISSUES - explicit trust declarations flagged in UNWANTED_PROSE
-- Over-description: NO
-- Length: OK
-- Tense: PAST - "The morning sun streamed"
-- Mature content: N/A
-- Name overuse: YES - "Emma" used when speaking TO her
-- Talking vs Showing: SEVERE - explicitly stating trust instead of showing it
-- Unwanted prose: YES - trust declarations that need to be replaced per instructions
+- 思路：这是干净的文字。动作具体（用枪管拨柴是有性格的细节），对话短促符合人设，没有套话，没有心理注解。不需要修改。
 </ANALYSIS>
 
 <FIX>
-The morning sun streamed through the window as Emma turned to face her partner.
-"Here," she said quietly, handing him the spare key to her apartment.
-Marcus closed his fingers around it, understanding the weight of the gesture. "We've been through so much together."
-She squeezed his hand, meeting his eyes with a small smile.
-</FIX>
-
----
-
-<REVIEW>
-"I, um, I don't think that's a good idea," Sarah stammered, her emerald eyes glistening with unshed tears as she contemplated the dire ramifications of their proposed course of action.
-"Why ever not?" inquired Thomas, his brow furrowing in consternation.
-"It's just... I mean... um... something feels wrong about it," she whispered softly.
-</REVIEW>
-
-<ANALYSIS>
-- Thought process: Sarah's nervous speech pattern with the stammering and "um"s is actually realistic and should be kept, but it's weighed down by purple prose about emerald eyes and dire ramifications. Thomas sounds like he's from a Victorian novel with "Why ever not?" The contrast between their speech styles is jarring.
-- Purple prose: YES - "emerald eyes glistening with unshed tears," "dire ramifications," "brow furrowing in consternation"
-- Unnatural dialogue: MIXED - Thomas sounds stiff, but Sarah's hesitation is natural
-- Over-description: YES - eye color, tear description unnecessary
-- Length: SLIGHTLY LONG
-- Tense: PAST - "Sarah stammered"
-- Mature content: N/A
-- Name overuse: NO
-- Talking vs Showing: GOOD - nervousness shown through stammering and hesitation
-- Speech patterns: PRESERVE - keep "um," "I mean," and stammering
-</ANALYSIS>
-
-<FIX>
-"I, um, I don't think that's a good idea," Sarah said, shifting uncomfortably.
-"Why not?"
-She bit her lip, looking away. "It's just... I mean... um... something feels wrong about it."
-</FIX>
-
----
-
-<REVIEW>
-"As you know, the dual-phase cooling system requires constant monitoring to prevent a cascade failure in the secondary loop," Dr. Chen explained to her co-engineer, who had been maintaining the reactor for twelve years. "The isothermal regulators must be calibrated every six hours, and the backup condensers need to cycle through their purge sequence before any power increase can be authorized."
-"Indeed, I am well aware of these procedures," he responded. "Perhaps we should also discuss the implications of the recent firmware update on the thermal management subsystem."
-</REVIEW>
-
-<ANALYSIS>
-- Thought process: This is exposition dumped into dialogue. These are two engineers who both know this information — they wouldn't explain it to each other. The dialogue exists purely to inform the reader, not because the characters would actually say it. It needs to be replaced with what they'd actually discuss: the immediate problem, not the textbook explanation.
-- Purple prose: NO
-- Unnatural dialogue: SEVERE - characters explaining things they both already know
-- Over-description: YES - unnecessary technical detail
-- Length: TOO LONG
-- Tense: PAST - "explained"
-- Mature content: N/A
-- Name overuse: NO
-- Talking vs Showing: SEVERE - lecturing the reader through dialogue
-</ANALYSIS>
-
-<FIX>
-"The cooling readings look wrong again." Dr. Chen frowned at her display, tapping one of the fluctuating values.
-He leaned over her shoulder. "That started after the firmware update. Want me to roll it back?"
-"Not yet. Let me check the secondary loop first."
-</FIX>
-
-{% if repetition %}---
-
-{% if repetition_handling == "rewrite" %}
-<REVIEW>
-The plaza was a sea of bodies, no space between strangers, every breath someone else's. People shouted over each other, and the heat off so many bodies turned the air heavy.
-A vendor pushed past with a tray of skewers. The crowd surged forward as the speaker took the stage, jammed elbow to elbow with no room to move.
-</REVIEW>
-
-<REPETITION ISSUES>
-- MATCH: `jammed elbow to elbow with no room to move`
-</REPETITION ISSUES>
-
-<ANALYSIS>
-- Thought process: The flagged tail shares no words with paragraph 1, but it semantically repeats "no space between strangers, every breath someone else's" — the press-of-bodies idea is already on the page. Trust the flag. The closer needs to stay (the surge needs a beat after it), so REWRITE with a different observable detail at that moment, not another note about how packed in everyone is. Simply rephrasing "the press of bodies" or "shoulder against shoulder" would still be the same beat — paraphrase isn't enough.
-- Purple prose: NO
-- Unnatural dialogue: N/A
-- Over-description: NO
-- Length: OK
-- Tense: PAST
-- Mature content: N/A
-- Name overuse: N/A
-- Talking vs Showing: OK
-- Repetition: YES - flagged tail semantically echoes the earlier "no space between strangers"; replaced with a different observable detail at the moment of the surge
-</ANALYSIS>
-
-<FIX>
-The plaza was a sea of bodies, no space between strangers, every breath someone else's. People shouted over each other, and the heat off so many bodies turned the air heavy.
-A vendor pushed past with a tray of skewers. The crowd surged forward as the speaker took the stage, the roar rolling up off the rooftops.
-</FIX>
-{% else %}
-<REVIEW>
-Marcus entered the room, his boots clicking against the marble floor. The chandelier cast dancing shadows across the walls as he surveyed the scene.
-"What happened here?" he demanded, his voice echoing in the vast space.
-Sarah looked up from where she knelt beside the broken vase. "I don't know. I just got here myself."
-Marcus entered the room, his boots clicking against the marble floor. He needed answers, and he needed them now.
-</REVIEW>
-
-<REPETITION ISSUES>
-- MATCH: `Marcus entered the room, his boots clicking against the marble floor.`
-</REPETITION ISSUES>
-
-<ANALYSIS>
-- Thought process: The AI has repeated an exact sentence from earlier - "Marcus entered the room, his boots clicking against the marble floor." The flagged sentence will be removed entirely. The surrounding text still reads naturally without it.
-- Purple prose: MINOR - "dancing shadows," "vast space"
-- Unnatural dialogue: NO - dialogue is natural
-- Over-description: MINOR - some unnecessary detail
-- Length: OK
-- Tense: PAST - "Marcus entered"
-- Mature content: N/A
-- Name overuse: NO - names used appropriately
-- Talking vs Showing: OK
-- Repetition: YES - flagged sentence will be deleted, not rewritten
-</ANALYSIS>
-
-<FIX>
-Marcus entered the room, his boots clicking against the marble floor. The chandelier cast shadows across the walls as he surveyed the scene.
-"What happened here?" he demanded.
-Sarah looked up from where she knelt beside the broken vase. "I don't know. I just got here myself."
-He needed answers, and he needed them now.
-</FIX>
-{% endif %}
-
-{% endif %}---
-
-<REVIEW>
-"Hi David, how are you today?" asked Emily.
-"I'm doing well, Emily. Have you seen Michael?"
-"No, David, I haven't seen Michael. But Sarah said she saw him earlier."
-"Thanks, Emily. I'll check his office."
-</REVIEW>
-
-<ANALYSIS>
-- Thought process: The constant name-dropping makes this sound like they just met at a networking event. The office reference suggests these are colleagues, not romantic partners, so we should just remove names, not add pet names.
-- Purple prose: NO
-- Unnatural dialogue: MINOR - slightly formal
-- Over-description: NO
-- Length: OK
-- Tense: PAST - "asked Emily"
-- Mature content: N/A
-- Name overuse: YES - "David" and "Emily" used when talking TO each other (remove - no pet names for colleagues), but "Michael" and "Sarah" correctly used when talking ABOUT them (keep)
-- Talking vs Showing: OK
-</ANALYSIS>
-
-<FIX>
-"Hi, how are you today?" Emily asked.
-"Good. Have you seen Michael?"
-"No, I haven't. But Sarah said she saw him earlier."
-"Thanks. I'll check his office."
-</FIX>
-
----
-
-<REVIEW>
-"Hey, you okay?" Sarah asked, noticing the dark circles under his eyes.
-Marcus shrugged. "Just tired. Been working late on the Morrison case."
-"That bad?"
-"Yeah." He rubbed his face. "The witness testimonies don't add up. Something's off."
-Sarah poured him a coffee. "Want to talk through it?"
-</REVIEW>
-
-<ANALYSIS>
-- Thought process: This dialogue is natural and flows well. Characters use contractions, speak in fragments, and show emotion through actions rather than stating feelings. No purple prose or name overuse.
-- Purple prose: NONE
-- Unnatural dialogue: NO - speaks like real people
-- Over-description: NO - just enough action to support dialogue
-- Length: OK
-- Tense: PAST - "Sarah asked"
-- Mature content: N/A
-- Name overuse: NO - names used appropriately
-- Talking vs Showing: GOOD - shows tiredness through appearance and actions
-
-I have identified no issues, i will mark with: <NO_FIX_REQUIRED/>
-</ANALYSIS>
-
 <NO_FIX_REQUIRED/>
-
----
-
-{# SCENE CONTEXT #}
-{% set scene_context_text %}
-{% set history = scene.context_history(
-    budget=1024, 
-    min_dialogue=20, 
-    sections=False) 
-%}
-<|SECTION:SCENE|>
-{% for scene_context in history -%}
-{{ scene_context }}
-{% endfor %}
-<|CLOSE_SECTION|>
-{% endset %}
-{# END SCENE CONTEXT #}
-
-{# SCENE ANALYSIS #}
-{% set scene_analysis_text %}
-{% if scene_analysis %}
-<|SECTION:SCENE ANALYSIS|>
-{{ scene_analysis }}
-<|CLOSE_SECTION|>
-{% endif %}
-{% endset %}
-{# END SCENE ANALYSIS #}
-
-{{ scene_context_text }}
-
-{% with _text=scene_context_text %}{% include "internal-note-help.jinja2" %}{% endwith %}
-
-{{ scene_analysis_text }}
+</FIX>
 
 {% include "character-guidance.jinja2" %}
 
@@ -382,72 +92,37 @@ I have identified no issues, i will mark with: <NO_FIX_REQUIRED/>
 
 {% include "dynamic-instructions.jinja2" %}
 <|SECTION:TASK|>
-Fix bad AI writing by making it simpler, shorter, and more natural. 
+修复AI味的中文写作，让它更像人写的。先去掉机器的痕迹，再保留人的痕迹。凡是被抹平了具体性的表达，都是痕迹：强信号（套话、排比泛滥、破折号评判句、空泛升华、翻译腔）出现一次就改；弱信号（单个成语、单个被动句）只在聚集出现、形成模式时才算。
 
-**Rules:**
-{{ li() }}. REDUCE purple prose - Replace flowery language with simple words
-{{ li() }}. PRESERVE KEY DETAILS - Keep ALL concrete facts that matter to the scene:
-   - Plot-relevant information (who, what, when, where, why)
-   - Character-revealing details (speech patterns, meaningful actions, emotional states)
-   - Unique objects, settings, or sensory details that create atmosphere
-   - Any detail that would change the meaning if removed
-   Only cut pure embellishment that adds no information
-{{ li() }}. MAKE dialogue natural - Use contractions, casual speech, how people actually talk. Important: character defining speaking patterns should be preserved.
-{{ li() }}. CUT excessive description - Remove unnecessary details, measurements, and over-explanation
-{{ li() }}. BE CONCISE - Remove only redundant or purple prose. Length reduction is a side effect, not the goal
-{{ li() }}. MATCH THE ORIGINAL TENSE - If the REVIEW passage is in present tense, keep the FIX in present tense. If it's in past tense, keep it in past tense. Only change tense when the original is inconsistent and you're clearly standardising it. 
-{{ li() }}. PRESERVE mature content - Keep swear words, slang, and raw language exactly as written
-{{ li() }}. AVOID name overuse - NEVER use names when talking TO someone. When removing names:
-   - For romantic partners/spouses: Can use "hun," "babe," "sweetie"
-   - For children/family: Can use "sweetie," "buddy," "Mom," "Dad," "sis"
-   - For friends: Can use "man," "dude," "buddy" (if casual relationship)
-   - For colleagues/acquaintances/unclear relationships: Just remove the name, don't add anything
-   ONLY use actual names when talking ABOUT someone who isn't there.
-{{ li() }}. SHOW don't tell - Use actions and natural dialogue instead of having characters announce their feelings or narrate their actions
+**规则：**
+{{ li() }}. 砍套话与填充词——"一丝""不禁""仿佛""似乎""难以言喻""心中涌起""眼底闪过""空气仿佛凝固""最柔软的角落"这类宣布式描写，删掉或换成具体动作。填充副词（非常、真正、显然、确实）直接删。
+{{ li() }}. 拆破折号评判句——"X——这是Y，不是Z"的结构：评判并进陈述、独立成句，或直接删。省略号只在真的省略了内容时保留。
+{{ li() }}. 砍排比与三段式——"代表着A，代表着B，代表着C"只留一句；连续等长的句子打破一句；"不仅…而且…"选一半说。
+{{ li() }}. 拆成语堆砌——四字成语连续出现只留一个，或换直白说法（"雪很深"好过"白雪皑皑"）。
+{{ li() }}. 砍金句感——读起来像格言的句子，用白话重写。
+{{ li() }}. 对话口语化——真人说话有省略、有半截话、有吞音。**但必须保持每个角色既有的说话方式**（见角色设定）：短句的人不写长句，轻声的人不喊话。不要把所有人改成同一种腔。
+{{ li() }}. 展示而非宣布——"她很紧张"改成具体动作；砍掉对话后面的心理注解和"她的声音里带着…"式显微描写。
+{{ li() }}. 名字过度——对话中对当面的人喊名字的，按关系删掉或换称呼；对第三方提及的名字保留。
+{{ li() }}. 保留格式与时态——保持原文的人称、时态，保留 *动作* 与「台词」的标记格式。
+{{ li() }}. 保留关键事实——剧情信息（谁、何时、何地、做了什么）、物品、数字、伏笔一个都不能丢。**严禁编造原文没有的细节**：不许新增比喻对象、心理活动或背景事实。宁可少写，不许编造。
+{{ li() }}. 保留真实的声音——粗口、方言、角色口癖、刻意的重复，原样保留。角色的怪癖是人的痕迹，不是AI痕迹。
+{{ li() }}. 精简是副作用不是目标——只删冗余，不为短而短。
 {%- if repetition %}
-{{ li() }}. {% if repetition_handling == "rewrite" %}REWRITE REPETITION - Sentences listed in <REPETITION> have been flagged as repeating earlier content. Repetition here is detected by similarity threshold - it may be verbatim, but it also includes semantic repetition (the same idea, action, or beat expressed in different words). Trust the flag: if a sentence appears in <REPETITION>, treat it as repetition regardless of how different the wording looks. Rewrite each flagged sentence with genuinely different content - substitute a different observation, action, or detail that advances the scene without re-conveying what was already on the page. Because the match is SEMANTIC, simply rephrasing the same idea in different words is NOT enough; the underlying meaning must change. Drop a flagged sentence outright only as a fallback when no meaningful rewrite is possible.{% else %}REMOVE REPETITION - Sentences listed in <REPETITION> have been flagged as repeating earlier content. Repetition here is detected by similarity threshold - it may be verbatim, but it also includes semantic repetition (the same idea, action, or beat expressed in different words). Trust the flag: if a sentence appears in <REPETITION>, treat it as repetition regardless of how different the wording looks. Delete the flagged sentences entirely from the FIX. Do NOT rewrite, paraphrase, or substitute new content in their place - just remove them and let the surrounding text flow on without them.{% endif %}
+{{ li() }}. {% if repetition_handling == "rewrite" %}重写重复——<REPETITION> 中列出的句子已被标记为与早先内容重复（语义级判定，措辞不同也算）。信任标记：出现在列表里就当作重复处理。用真正不同的内容改写每处标记句——替换成不同的观察、动作或细节，推进场景而不是换个说法重复原意。仅在实在无法有意义地改写时才整句删除。{% else %}删除重复——<REPETITION> 中列出的句子已被标记为与早先内容重复（语义级判定，措辞不同也算）。信任标记：出现在列表里就当作重复处理。直接从 FIX 中整句删除，不要改写、不要替换新内容，让前后文自然衔接。{% endif %}
 {%- endif %}
 {% if bad_prose %}
-{{ li() }}. REMOVE UNWANTED PROSE - Address the unwanted prose issues. These phrases have been identified by the director as bad, and MUST be changed accordingly.
+{{ li() }}. 处理不良文风——<UNWANTED_PROSE> 中标记的短语已被导演判定为需要修改，必须按要求处理。
 {% endif %}
 
-**Common dialogue fixes:**
-- "Hello, John" → "Hey"
-- "You are doing great, Jessica" → "You're doing great"
-- "Thank you, Michael" → "Thanks"
-- "I am feeling sad" → [character wipes eyes, voice cracks]
-- "I am angry at you" → [character slams door, clenches fists]
-- Using "hun," "babe," "sweetie," "man," "dude" etc. when appropriate
+**保留：** 暴露性格的动作、定氛围的感官细节、有戏的物件、真实的情绪指示、角色的说话方式
+**砍掉：** 冗余形容词、精确测量值、临床式描述、过度比喻（一段最多一个比喻）、空泛升华
 
-**Common name overuse fixes**
-TO someone (remove/replace based on relationship):
-- "Hi David" → "Hi" (colleague) or "Hey babe" (romantic partner)
-- "Thanks, Sarah" → "Thanks" (colleague) or "Thanks, hun" (close relationship)
-- "Good morning, Mr. Johnson" → "Good morning" (formal/work setting)
-- "Excuse me, Rebecca" → "Excuse me" (stranger/acquaintance)
+参照示例理解任务，先给出分析，再给出修复，修复内容是最终输出。
 
-ABOUT someone (keep):
-- "Have you seen David?" → "Have you seen David?"
-- "Sarah told me" → "Sarah told me"
-- "I need to call Jennifer" → "I need to call Jennifer"
-- "Mike's running late" → "Mike's running late"
+所有修改必须尊重故事的意图与既有设定。
 
-Mixed examples:
-- "John, did you see Mary?" → "Did you see Mary?" (remove John, keep Mary)
-- "Thanks for helping, Anna. Tom really appreciated it" → "Thanks for helping. Tom really appreciated it"
-- "Mom, where's Dad?" → "Mom, where's Dad?" (family terms stay)
-
-**What to keep vs cut:**
-KEEP: Actions that reveal character, sensory details that set mood, specific objects that matter, emotional indicators
-CUT: Redundant adjectives, exact measurements, clinical language, overwrought metaphors
-
-Use the examples for a deeper understanding of the task and provide your analysis and fix, with the fix being the final output.
-
-Any changes you propose MUST respect the vision and intention of the story.
-
-If there are no changes needed use a <NO_FIX_REQUIRED/> tag.
-
-If there are changes needed, provide the fix in the <FIX>...</FIX> block.
+无需修改时使用 <NO_FIX_REQUIRED/> 标签。
+需要修改时把结果放在 <FIX>...</FIX> 块中。
 
 <REVIEW>{{ text }}</REVIEW>
 {% if repetition %}
@@ -464,4 +139,4 @@ If there are changes needed, provide the fix in the <FIX>...</FIX> block.
 {% endif %}
 
 <|CLOSE_SECTION|>
-{{ set_prepared_response("<ANALYSIS>\n- Thought process") }}
+{{ set_prepared_response("<ANALYSIS>\n- 思路") }}

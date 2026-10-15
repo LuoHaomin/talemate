@@ -198,7 +198,11 @@ REWRITE_MAX_LENGTH_RATIO = 1.25
 # Extra token headroom added on top of the draft's token count when sizing
 # the response budget for revision prompts. Gives the model room for the
 # analysis preamble before it emits the wrapped rewrite.
-REVISION_RESPONSE_HEADROOM = 768
+# The budget must cover the model's analysis section AND the full rewritten
+# <FIX>/<REVISION> block. 768 tokens were routinely exhausted by a verbose
+# analysis, pushing the closing tag past the max_tokens limit -- the anchor
+# extractor then accepted the truncated remainder as the fix.
+REVISION_RESPONSE_HEADROOM = 1536
 
 
 def _format_length_ratio(new_len: int, original_len: int) -> str:
@@ -1270,7 +1274,7 @@ class RevisionMixin:
         await async_signals.get("agent.editor.revision-revise.before").send(emission)
         await async_signals.get("agent.editor.revision-analysis.before").send(emission)
 
-        _, extracted = await Prompt.request(
+        response, extracted = await Prompt.request(
             "editor.revision-rewrite",
             self.client,
             f"edit_{response_length}",
@@ -1290,6 +1294,15 @@ class RevisionMixin:
         if not revision:
             log.debug(
                 "revision_rewrite: no <REVISION> content in response, keeping original"
+            )
+            return original_text
+
+        # A missing closing anchor means the response was cut off by
+        # max_tokens; the extractor's open-ended fallback would otherwise
+        # accept the truncated remainder as the rewrite.
+        if "</revision>" not in response.lower():
+            log.debug(
+                "revision_rewrite: truncated response (no closing </REVISION>), keeping original"
             )
             return original_text
 
@@ -1397,6 +1410,15 @@ class RevisionMixin:
         if not fix:
             log.debug(
                 "revision_unslop: no <FIX> content in response", response=response
+            )
+            return original_text
+
+        # Same truncation guard as revision_rewrite: without a closing
+        # </FIX> the extractor's open-ended fallback would replace the
+        # original text with a max_tokens-truncated half fix.
+        if "</fix>" not in response.lower():
+            log.debug(
+                "revision_unslop: truncated response (no closing </FIX>), keeping original"
             )
             return original_text
 
