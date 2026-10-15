@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 __all__ = [
@@ -10,7 +11,10 @@ __all__ = [
     "relative_to_root",
 ]
 
-TALEMATE_ROOT = Path(__file__).parent.parent.parent
+# Allow data (config/scenes/templates/tts/logs) to live apart from the
+# source tree: set TALEMATE_ROOT to a data directory. Defaults to the
+# repository root for unchanged behavior.
+TALEMATE_ROOT = Path(os.environ["TALEMATE_ROOT"]) if os.environ.get("TALEMATE_ROOT") else Path(__file__).parent.parent.parent
 SCENES_DIR = TALEMATE_ROOT / "scenes"
 TEMPLATES_DIR = TALEMATE_ROOT / "templates"
 TTS_DIR = TALEMATE_ROOT / "tts"
