@@ -110,16 +110,17 @@ class WebsocketHandler(SceneAssetsBatchingMixin, Receiver):
             )
             self.routes[handler_cls.router] = handler_cls(self)
 
-    def disconnect(self):
+    def disconnect(self, close_memory: bool = True):
         super().disconnect()
         abort_wait_for_input()
 
         # Cleanup scene assets batching
         self._cleanup_scene_assets_batching()
 
-        memory_agent = instance.get_agent("memory")
-        if memory_agent and self.scene:
-            memory_agent.close_db(self.scene)
+        if close_memory:
+            memory_agent = instance.get_agent("memory")
+            if memory_agent and self.scene:
+                memory_agent.close_db(self.scene)
 
         for plugin in self.routes.values():
             if hasattr(plugin, "disconnect"):

@@ -1,6 +1,7 @@
 import asyncio
 import json
 import traceback
+from pathlib import Path
 
 import starlette.websockets
 import structlog
@@ -27,6 +28,68 @@ log = structlog.get_logger("talemate")
 # connection attempts while it is still open.
 _active_frontend_websocket = None
 _active_frontend_websocket_handler = None
+
+# Headless-disconnect rescue (game.general.headless_disconnect): scenes whose
+# in-flight work keeps running after the frontend disconnects. Keyed by
+# resolved save path so a reconnecting load_scene waits for the rescue to
+# finish before reading the file.
+_pending_scene_finishes: dict[str, asyncio.Task] = {}
+
+HEADLESS_FINISH_TIMEOUT = 300.0
+
+
+def _agents_busy() -> bool:
+    return any(
+        getattr(agent, "processing", 0) > 0 or getattr(agent, "processing_bg", 0) > 0
+        for agent in instance.AGENTS.values()
+    )
+
+
+async def _finish_scene_after_disconnect(scene, timeout: float = None, poll: float = 0.5):
+    """
+    Completes a scene after the frontend disconnected in headless mode.
+
+    Waits for in-flight agent work to settle — the current round finishes
+    generating and ends up waiting for player input — then deactivates the
+    scene, saves it and closes its memory db.
+
+    Bounded by `timeout`: a round stuck on something unanswerable without a
+    frontend (e.g. a confirmation prompt) gets the scene deactivated under
+    it, cancelling remaining generations, and the save still happens.
+    """
+
+    timeout = HEADLESS_FINISH_TIMEOUT if timeout is None else timeout
+    deadline = asyncio.get_event_loop().time() + timeout
+    try:
+        while _agents_busy():
+            if asyncio.get_event_loop().time() >= deadline:
+                log.warning(
+                    "headless disconnect: timed out waiting for agents, "
+                    "force-stopping scene"
+                )
+                scene.active = False
+                await asyncio.sleep(1.0)
+                break
+            await asyncio.sleep(poll)
+
+        scene.active = False
+        scene.continue_scene = False
+
+        if not scene.saved:
+            log.info(
+                "headless disconnect: saving scene",
+                scene=getattr(scene, "name", None),
+            )
+            await scene.save(force=True)
+    except Exception as e:
+        log.error("headless disconnect: rescue failed", error=str(e))
+    finally:
+        try:
+            memory_agent = instance.get_agent("memory")
+            if memory_agent:
+                memory_agent.close_db(scene)
+        except Exception as e:
+            log.error("headless disconnect: memory close failed", error=str(e))
 
 
 def get_active_frontend_handler():
@@ -79,12 +142,36 @@ async def websocket_endpoint(websocket):
         # no user response can arrive anymore - terminate any coroutine still
         # waiting on a generation error dialog
         resolve_all_generation_errors("cancel")
-        handler.disconnect()
-        if handler.scene:
-            handler.scene.active = False
-            handler.scene.continue_scene = False
-            if scene_task:
-                scene_task.cancel()
+
+        headless_rescue = bool(
+            handler.scene
+            and not getattr(handler.scene, "loading", False)
+            and get_config().game.general.headless_disconnect
+        )
+
+        if headless_rescue:
+            # Keep in-flight generations running: the rescue task waits for
+            # the current round to settle, then deactivates, saves and
+            # closes the scene. The memory db must stay open until then,
+            # so it is closed by the rescue, not here.
+            handler.disconnect(close_memory=False)
+            finish_task = asyncio.create_task(
+                _finish_scene_after_disconnect(handler.scene)
+            )
+            save_path = getattr(handler.scene, "filename", None)
+            if save_path:
+                key = str(Path(save_path).resolve())
+                _pending_scene_finishes[key] = finish_task
+                finish_task.add_done_callback(
+                    lambda _t, key=key: _pending_scene_finishes.pop(key, None)
+                )
+        else:
+            handler.disconnect()
+            if handler.scene:
+                handler.scene.active = False
+                handler.scene.continue_scene = False
+                if scene_task:
+                    scene_task.cancel()
         # Clear the active websocket reference so a new frontend can connect.
         if _active_frontend_websocket is websocket:
             _active_frontend_websocket = None
@@ -174,6 +261,21 @@ async def websocket_endpoint(websocket):
                         )
 
                     log.info("load_scene", file_path=file_path, reset=reset)
+
+                    # If a headless rescue is still finishing this scene
+                    # (disconnect + quick reconnect), wait for it to save
+                    # before loading, so the rescue's messages are not
+                    # overwritten by a stale read.
+                    if file_path:
+                        pending = _pending_scene_finishes.get(
+                            str(Path(file_path).resolve())
+                        )
+                        if pending:
+                            log.info(
+                                "load_scene: waiting for headless rescue to finish",
+                                file_path=file_path,
+                            )
+                            await pending
 
                     # Create a task to load the scene in the background
                     scene_task = asyncio.create_task(

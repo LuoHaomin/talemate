@@ -221,6 +221,11 @@ class GamePlayerCharacter(pydantic.BaseModel):
 
 class General(pydantic.BaseModel):
     auto_save: bool = True
+    # On frontend disconnect: let in-flight scene generations finish, then
+    # save the scene instead of cancelling the work (bounded to a five
+    # minute rescue window). Default keeps the historical
+    # abort-on-disconnect behavior.
+    headless_disconnect: bool = False
     auto_progress: bool = True
     max_backscroll: int = 100
     add_default_character: bool = True
