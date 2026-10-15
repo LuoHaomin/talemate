@@ -33,6 +33,7 @@ from .backends.openai_image import OpenAIMixin
 from .backends.openrouter import OpenRouterMixin
 from .backends.talemate_client import TalemateClientMixin
 from .backends.openai_compatible import OpenAICompatibleMixin
+from .backends.minimax_image import MinimaxMixin
 
 __all__ = [
     "VisualAgent",
@@ -65,6 +66,7 @@ class VisualAgent(
     OpenRouterMixin,
     TalemateClientMixin,
     OpenAICompatibleMixin,
+    MinimaxMixin,
     Agent,
 ):
     """
@@ -215,6 +217,7 @@ class VisualAgent(
         OpenRouterMixin.add_actions(actions)
         TalemateClientMixin.add_actions(actions)
         OpenAICompatibleMixin.add_actions(actions)
+        MinimaxMixin.add_actions(actions)
         StyleMixin.add_actions(actions)
 
         return actions
