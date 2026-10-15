@@ -345,7 +345,14 @@ class NarratorAgent(MemoryRAGMixin, AutoNarrationMixin, Agent):
                     continue
                 if line.lower().startswith(f"{character_name}:"):
                     character_dialogue_detected = True
-                elif line.startswith(f"{character_name.upper()}"):
+                # The uppercase-surname branch only makes sense for names
+                # with case (English screenplay "YUKI"). str.upper() is a
+                # no-op on CJK names, so any narration line starting with
+                # the character's Chinese name was misread as a speaker
+                # line and truncated.
+                elif character_name.upper() != character_name and line.startswith(
+                    f"{character_name.upper()}"
+                ):
                     character_dialogue_detected = True
 
                 if character_dialogue_detected:
